@@ -1,0 +1,5 @@
+<!-- This favicon.ico should be placed in the public folder -->
+<!-- For now, we'll update the HTML to reference a high-quality audio-themed favicon -->
+
+<!-- You can generate a custom favicon with the ELARIOSSO logo at https://favicon.io/ -->
+<!-- For immediate use, we'll add some meta tags to the index.html -->
