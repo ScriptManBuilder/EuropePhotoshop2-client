@@ -177,8 +177,14 @@ const LanguageDropdown = styled.div<{ isOpen: boolean }>`
 
   /* Очень маленькие экраны */
   @media (max-width: 480px) {
-    width: 180px;
+    width: 170px; /* Уменьшили с 180px */
     max-height: ${props => props.isOpen ? '220px' : '0'};
+  }
+
+  /* Совсем маленькие экраны */
+  @media (max-width: 375px) {
+    width: 160px; /* Еще меньше */
+    max-height: ${props => props.isOpen ? '200px' : '0'};
   }
 `;
 
@@ -230,12 +236,12 @@ const LanguageOption = styled.div`
 
   /* Мобильные */
   @media (max-width: 768px) {
-    padding: 16px 20px;
-    font-size: 16px;
-    gap: 14px;
+    padding: 12px 16px; /* Уменьшили padding */
+    font-size: 14px; /* Уменьшили с 16px до 14px */
+    gap: 10px; /* Уменьшили gap */
     
     &:hover {
-      padding-left: 24px;
+      padding-left: 20px; /* Уменьшили hover padding */
     }
 
     &:first-child {
@@ -249,30 +255,47 @@ const LanguageOption = styled.div`
 
   /* Очень маленькие экраны */
   @media (max-width: 480px) {
-    padding: 14px 18px;
-    font-size: 15px;
+    padding: 10px 14px; /* Еще меньше padding */
+    font-size: 13px; /* Уменьшили с 15px до 13px */
+    gap: 8px;
     
     &:hover {
-      padding-left: 22px;
+      padding-left: 18px;
+    }
+  }
+
+  /* Совсем маленькие экраны */
+  @media (max-width: 375px) {
+    padding: 8px 12px;
+    font-size: 12px;
+    gap: 6px;
+    
+    &:hover {
+      padding-left: 16px;
     }
   }
 `;
 
 const FlagEmoji = styled.span`
-  font-size: 20px;
+  font-size: 18px; /* Немного уменьшили базовый размер */
   line-height: 1;
   filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+  flex-shrink: 0; /* Предотвращаем сжатие флага */
 
   @media (max-width: 1024px) {
-    font-size: 18px;
+    font-size: 16px; /* Уменьшили */
   }
 
   @media (max-width: 768px) {
-    font-size: 12px;
+    font-size: 14px; /* Меньше для мобильных */
   }
 
   @media (max-width: 480px) {
-    font-size: 11px;
+    font-size: 12px; /* Еще меньше */
+  }
+
+  @media (max-width: 375px) {
+    font-size: 11px; /* Совсем маленький */
   }
 `;
 
@@ -280,9 +303,21 @@ const LanguageName = styled.span`
   color: #2d3748;
   font-weight: 500;
   flex: 1;
+  font-size: 14px; /* Базовый размер */
+  white-space: nowrap; /* Предотвращаем перенос текста */
+  overflow: hidden;
 
   @media (max-width: 768px) {
     font-weight: 600;
+    font-size: 13px; /* Меньше для мобильных */
+  }
+
+  @media (max-width: 480px) {
+    font-size: 12px; /* Еще меньше */
+  }
+
+  @media (max-width: 375px) {
+    font-size: 11px; /* Совсем маленький */
   }
 `;
 
