@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Container, Button } from '../styles/GlobalStyles';
 import { useAuth } from '../contexts/AuthContext';
+import { usePrice } from '../hooks/usePrice';
 import { products, getProductVideo, getProductVideos } from '../data/products';
 import SubscriptionManagement from '../components/SubscriptionManagement';
 import {
@@ -39,6 +40,7 @@ import {
 
 const Account: React.FC = () => {
   const { user, logout } = useAuth();
+  const { formatPrice } = usePrice();
   const [activeTab, setActiveTab] = useState('profile');
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 968);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
@@ -103,7 +105,7 @@ const Account: React.FC = () => {
       id: product.id,
       title: product.name,
       description: product.description,
-      price: `$${product.price}`,
+      price: formatPrice(product.price),
       videos: courseVideos
     };
   });

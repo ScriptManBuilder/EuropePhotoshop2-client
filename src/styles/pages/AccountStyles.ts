@@ -7,7 +7,12 @@ export const AccountWrapper = styled.div`
   background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
   
   @media (max-width: 768px) {
-    padding-top: 100px;
+    padding-top: 80px;
+    background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);
+  }
+  
+  @media (max-width: 480px) {
+    padding-top: 70px;
   }
 `;
 
@@ -19,7 +24,13 @@ export const AccountContent = styled.div`
 
   @media (max-width: 968px) {
     grid-template-columns: 1fr;
-    gap: 24px;
+    gap: 16px;
+    margin-top: 16px;
+  }
+  
+  @media (max-width: 768px) {
+    gap: 12px;
+    margin-top: 12px;
   }
 `;
 
@@ -79,19 +90,27 @@ export const MainContent = styled.div`
   backdrop-filter: blur(10px);
 
   @media (max-width: 968px) {
-    padding: 32px;
+    padding: 24px;
     border-radius: 12px;
   }
 
   @media (max-width: 768px) {
-    padding: 24px;
-    margin: 0 16px;
+    padding: 20px;
+    margin: 0 12px;
+    border-radius: 12px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.06);
   }
 
   @media (max-width: 480px) {
-    padding: 20px;
-    margin: 0 12px;
-    border-radius: 8px;
+    padding: 16px;
+    margin: 0 8px;
+    border-radius: 10px;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.05);
+  }
+  
+  @media (max-width: 375px) {
+    padding: 12px;
+    margin: 0 4px;
   }
 `;
 
@@ -123,14 +142,30 @@ export const SectionTitle = styled.h2`
   }
 
   @media (max-width: 768px) {
-    font-size: 1.8rem;
-    margin-bottom: 24px;
+    font-size: 1.6rem;
+    margin-bottom: 20px;
     text-align: center;
+    
+    &::after {
+      left: 50%;
+      transform: translateX(-50%);
+    }
   }
 
   @media (max-width: 480px) {
-    font-size: 1.6rem;
-    margin-bottom: 20px;
+    font-size: 1.4rem;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    
+    &::after {
+      width: 40px;
+    }
+  }
+  
+  @media (max-width: 375px) {
+    font-size: 1.2rem;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
   }
 `;
 
@@ -175,6 +210,53 @@ export const InfoCard = styled.div`
     position: relative;
     z-index: 1;
   }
+  
+  @media (max-width: 768px) {
+    padding: 24px;
+    margin-bottom: 20px;
+    border-radius: 12px;
+    
+    h3 {
+      font-size: 1.2rem;
+      margin-bottom: 12px;
+    }
+    
+    p {
+      font-size: 1rem;
+      margin-bottom: 16px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    padding: 18px;
+    margin-bottom: 16px;
+    border-radius: 10px;
+    
+    h3 {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+    
+    p {
+      font-size: 0.95rem;
+      margin-bottom: 12px;
+    }
+  }
+  
+  @media (max-width: 375px) {
+    padding: 14px;
+    margin-bottom: 12px;
+    
+    h3 {
+      font-size: 1rem;
+      margin-bottom: 8px;
+    }
+    
+    p {
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+    }
+  }
 `;
 
 export const InfoGrid = styled.div`
@@ -182,6 +264,17 @@ export const InfoGrid = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 24px;
   margin: 24px 0;
+  
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin: 16px 0;
+  }
+  
+  @media (max-width: 480px) {
+    gap: 12px;
+    margin: 12px 0;
+  }
 `;
 
 export const InfoItem = styled.div`
@@ -202,6 +295,47 @@ export const InfoItem = styled.div`
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     letter-spacing: -0.01em;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  
+  @media (max-width: 768px) {
+    text-align: center;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    
+    h4 {
+      font-size: 0.9rem;
+      margin-bottom: 6px;
+    }
+    
+    p {
+      font-size: 1.1rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    padding: 10px;
+    
+    h4 {
+      font-size: 0.85rem;
+      margin-bottom: 4px;
+    }
+    
+    p {
+      font-size: 1rem;
+    }
+  }
+  
+  @media (max-width: 375px) {
+    padding: 8px;
+    
+    h4 {
+      font-size: 0.8rem;
+    }
+    
+    p {
+      font-size: 0.95rem;
+    }
   }
 `;
 

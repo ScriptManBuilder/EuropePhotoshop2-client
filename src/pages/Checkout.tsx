@@ -1555,7 +1555,7 @@ const Checkout: React.FC = () => {
                   </MembershipBenefits>
 
                   <MembershipPricing>
-                    <MembershipPrice>3-Day Free Trial → €19.99/month</MembershipPrice>
+                    <MembershipPrice>3-Day Free Trial → 19.99 €/month</MembershipPrice>
                     <MembershipTrial>Cancel anytime • No commitment required</MembershipTrial>
                   </MembershipPricing>
                 </MembershipDetails>

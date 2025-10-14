@@ -61,7 +61,7 @@ class CurrencyService {
       EUR: '€'
     };
 
-    const formatted = `${symbols[currency]}${convertedPrice.toFixed(2)}`;
+    const formatted = `${convertedPrice.toFixed(2)} ${symbols[currency]}`;
     
     return formatted;
   }

@@ -6,6 +6,7 @@ import { useAuth } from '../contexts/AuthContext';
 import { usePrice } from '../hooks/usePrice';
 import ProductsDropdown from './ProductsDropdown';
 import CurrencyToggle from './CurrencyToggle';
+import LanguageToggle from './LanguageToggle';
 import { CONTACT_INFO } from '../config/constants';
 import {
   HeaderWrapper,
@@ -56,16 +57,6 @@ const Header: React.FC = () => {
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
-  };
-
-  const handleProductsMouseEnter = () => {
-    console.log('Mouse entered CATALOG'); // Временная отладка
-    isMouseOverProducts.current = true;
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-      timeoutRef.current = null;
-    }
-    setIsProductsDropdownVisible(true);
   };
 
   const handleProductsMouseLeave = () => {
@@ -202,33 +193,35 @@ const Header: React.FC = () => {
       <Nav>
         <Logo to="/">Photoshop</Logo>
         
-        <NavLinks isOpen={isMenuOpen}>
-          <NavLink to="/" onClick={() => setIsMenuOpen(false)}>HOME</NavLink>
-          <ProductsNavItem data-nav="products">
-            <NavLink 
-              to="/products" 
-              onClick={() => setIsMenuOpen(false)}
-              onMouseEnter={handleProductsMouseEnter}
-              onMouseLeave={handleProductsMouseLeave}
-            >
-              CATALOG
-            </NavLink>
-            <ProductsDropdown 
-              isVisible={isProductsDropdownVisible} 
-              onClose={() => setIsProductsDropdownVisible(false)}
-              onMouseEnter={handleDropdownMouseEnter}
-              onMouseLeave={handleDropdownMouseLeave}
-              selectedCategory={getSelectedCategory()}
-            />
-          </ProductsNavItem>
-          <NavLink to="/about" onClick={() => setIsMenuOpen(false)}>ABOUT</NavLink>
-          <NavLink to="/blog" onClick={() => setIsMenuOpen(false)}>BLOG</NavLink>
-          <NavLink to="/support" onClick={() => setIsMenuOpen(false)}>SUPPORT</NavLink>
-          <button className="close-button" onClick={() => setIsMenuOpen(false)}>X</button>
+        <NavLinks isOpen={isMenuOpen} data-nav="mobile-menu" data-is-open={isMenuOpen}>
+          <div className="nav-items">
+            <NavLink to="/" onClick={() => setIsMenuOpen(false)}>HOME</NavLink>
+            <ProductsNavItem data-nav="products">
+              <NavLink 
+                to="/products" 
+                onClick={() => setIsMenuOpen(false)}
+                onMouseLeave={handleProductsMouseLeave}
+              >
+                CATALOG
+              </NavLink>
+              <ProductsDropdown 
+                isVisible={isProductsDropdownVisible} 
+                onClose={() => setIsProductsDropdownVisible(false)}
+                onMouseEnter={handleDropdownMouseEnter}
+                onMouseLeave={handleDropdownMouseLeave}
+                selectedCategory={getSelectedCategory()}
+              />
+            </ProductsNavItem>
+            <NavLink to="/about" onClick={() => setIsMenuOpen(false)}>ABOUT</NavLink>
+            <NavLink to="/blog" onClick={() => setIsMenuOpen(false)}>BLOG</NavLink>
+            <NavLink to="/support" onClick={() => setIsMenuOpen(false)}>SUPPORT</NavLink>
+          </div>
+          <button className="close-button" onClick={() => setIsMenuOpen(false)}>✕</button>
         </NavLinks>
         
         <RightSection>
           <CurrencyToggle />
+          <LanguageToggle />
           
           <CartIcon to="/cart">
             <ShoppingCartIcon />

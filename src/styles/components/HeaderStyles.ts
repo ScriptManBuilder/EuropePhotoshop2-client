@@ -405,45 +405,92 @@ export const NavLinks = styled.div<{ isOpen: boolean }>`
   @media (max-width: 768px) {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 4px;
-    padding: 6px 10px;
-    background: rgba(255, 255, 255, 0.98);
-    backdrop-filter: blur(20px);
-    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
-    border-bottom: 1px solid rgba(102, 126, 234, 0.1);
+    align-items: flex-start;
+    gap: 0;
+    padding: 0;
+    background: linear-gradient(145deg, #667eea 0%, #764ba2 20%, #f8f9ff 100%);
+    backdrop-filter: blur(30px);
+    box-shadow: 
+      0 25px 80px rgba(102, 126, 234, 0.25),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    border-bottom: none;
+    border-radius: 0 0 25px 25px;
     transform: translateY(${props => props.isOpen ? '0' : '-100%'});
-    transition: transform 0.3s ease;
-    max-height: calc(100vh - 55px);
-    overflow-y: auto;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    max-height: calc(100vh - 60px);
+    overflow: hidden;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    z-index: 999;
+    z-index: 10000;
+
+    .nav-items {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      width: 100%;
+      gap: 0;
+      padding: 60px 25px 30px 25px;
+      position: relative;
+      
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 50px;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.05) 100%);
+        border-radius: 0 0 20px 20px;
+        backdrop-filter: blur(10px);
+      }
+      
+      &::after {
+        content: 'Navigation Menu';
+        position: absolute;
+        top: 15px;
+        left: 25px;
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 0.85rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+    }
 
     .close-button {
       position: absolute;
-      top: 5px;
-      right: 5px;
-      background: linear-gradient(135deg, #667eea, #764ba2);
-      color: #fff;
-      border: none;
+      top: 10px;
+      right: 15px;
+      background: rgba(255, 255, 255, 0.15);
+      color: white;
+      border: 2px solid rgba(255, 255, 255, 0.3);
       border-radius: 50%;
-      width: 24px;
-      height: 24px;
+      width: 36px;
+      height: 36px;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      font-size: 10px;
-      font-weight: bold;
-      box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
-      transition: all 0.2s ease;
+      font-size: 16px;
+      font-weight: 300;
+      box-shadow: 
+        0 4px 20px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      backdrop-filter: blur(15px);
 
       &:hover {
-        transform: scale(1.1);
-        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        transform: scale(1.1) rotate(90deg);
+        background: rgba(255, 255, 255, 0.25);
+        box-shadow: 
+          0 6px 25px rgba(0, 0, 0, 0.15),
+          inset 0 1px 0 rgba(255, 255, 255, 0.3);
+      }
+      
+      &:active {
+        transform: scale(0.95) rotate(90deg);
       }
     }
   }
@@ -491,7 +538,7 @@ export const NavLinks = styled.div<{ isOpen: boolean }>`
 export const NavLink = styled(Link)`
   color: #333;
   font-weight: 600;
-  text-align: center;
+  text-align: left; /* По умолчанию по левому краю */
   padding: 8px 16px;
   font-size: 1rem;
   transition: all 0.3s ease;
@@ -501,6 +548,11 @@ export const NavLink = styled(Link)`
   overflow: hidden;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   letter-spacing: -0.005em;
+  
+  /* Для десктопа центрируем */
+  @media (min-width: 769px) {
+    text-align: center;
+  }
   
   /* Псевдоэлемент для анимации змейки */
   &::before {
@@ -561,13 +613,107 @@ export const NavLink = styled(Link)`
   }
 
   @media (max-width: 768px) {
-    font-size: 0.85rem;
-    padding: 4px 8px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    padding: 18px 24px;
+    width: 100%;
+    text-align: center; /* Центрируем все пункты меню */
+    margin: 6px 0;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    color: #2d3748;
+    display: block;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(20px);
+    
+    /* Первый элемент */
+    &:first-child {
+      margin-top: 0;
+    }
+    
+    /* Последний элемент */
+    &:last-child {
+      margin-bottom: 0;
+    }
+    
+    /* Левая акцентная линия */
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 0;
+      height: 100%;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 0 18px 18px 0;
+      transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    /* Фоновый градиент при hover */
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.05) 100%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      border-radius: 18px;
+    }
+    
+    &:hover {
+      background: rgba(255, 255, 255, 0.95);
+      transform: translateX(8px) scale(1.02);
+      color: #667eea;
+      box-shadow: 
+        0 12px 40px rgba(102, 126, 234, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+      
+      &::before {
+        width: 6px;
+      }
+      
+      &::after {
+        opacity: 1;
+      }
+    }
+    
+    &:active {
+      transform: translateX(4px) scale(0.98);
+    }
+    
+    /* Анимация появления */
+    animation: slideInLeft 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    opacity: 0;
+    transform: translateX(-20px);
+    
+    @for $i from 1 through 6 {
+      &:nth-child(#{$i}) {
+        animation-delay: #{($i - 1) * 0.1}s;
+      }
+    }
+  }
+
+  @keyframes slideInLeft {
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
   }
 
   @media (max-width: 480px) {
-    font-size: 0.8rem;
-    padding: 3px 6px;
+    font-size: 1rem;
+    padding: 15px 20px;
+    margin: 4px 0;
+    border-radius: 15px;
+  }
   }
 
   @media (max-width: 375px) {
@@ -615,19 +761,11 @@ export const ProductsNavItem = styled.div`
     position: static;
     display: block;
     width: 100%;
-    text-align: center;
     
-    /* Обеспечиваем центрирование NavLink внутри */
-    & a {
-      display: block;
-      width: 100%;
-      text-align: center !important;
-      margin: 0 auto;
-    }
-    
+    /* Убираем псевдоэлементы контейнера */
     &::before,
     &::after {
-      display: none;
+      display: none !important;
     }
   }
 `;

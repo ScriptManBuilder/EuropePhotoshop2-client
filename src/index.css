@@ -110,3 +110,23 @@ input, textarea, select {
 ::-webkit-scrollbar-thumb:hover {
   background: #a8a8a8;
 }
+
+/* Language Toggle Styles - Ensure proper display on translated pages */
+[data-language-toggle] {
+  z-index: 9999 !important;
+  position: relative !important;
+}
+
+/* Ensure our site works well with Google Translate */
+body.translated {
+  padding-top: 0 !important;
+}
+
+/* Hide Google Translate frame when not needed */
+.goog-te-banner-frame.skiptranslate {
+  display: none !important;
+}
+
+.goog-te-banner-frame {
+  display: none !important;
+}
