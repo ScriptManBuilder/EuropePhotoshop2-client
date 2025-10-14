@@ -51,9 +51,22 @@ const CurrencyButton = styled.button<{ isActive: boolean }>`
   }
 `;
 
-const CurrencyIcon = styled.span`
+const CurrencyIcon = styled.span<{ isUpdating?: boolean }>`
   font-size: 1.1rem;
   animation: ${fadeIn} 0.3s ease;
+  ${props => props.isUpdating && `
+    animation: spin 1s linear infinite;
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+  `}
+  
+  /* Простой текстовый индикатор вместо эмодзи */
+  &::before {
+    content: ${props => props.isUpdating ? '"⟲"' : '"¤"'};
+    color: inherit;
+  }
 `;
 
 const CurrencyText = styled.span`
@@ -125,9 +138,13 @@ interface CurrencyToggleProps {
 const CurrencyToggle: React.FC<CurrencyToggleProps> = ({ onCurrencyChange }) => {
   const [currentCurrency, setCurrentCurrency] = useState<Currency>(currencyService.getCurrency());
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isUpdatingRates, setIsUpdatingRates] = useState(false);
 
-  const handleCurrencyChange = (newCurrency: Currency) => {
+  const handleCurrencyChange = async (newCurrency: Currency) => {
     setCurrentCurrency(newCurrency);
+    setIsUpdatingRates(true);
+    
+    // Set currency (this will automatically fetch new rates)
     currencyService.setCurrency(newCurrency);
     setIsDropdownOpen(false);
     
@@ -139,6 +156,9 @@ const CurrencyToggle: React.FC<CurrencyToggleProps> = ({ onCurrencyChange }) => 
     window.dispatchEvent(new CustomEvent('currencyChanged', { 
       detail: { currency: newCurrency } 
     }));
+    
+    // Small delay to show loading state
+    setTimeout(() => setIsUpdatingRates(false), 1000);
   };
 
   const toggleDropdown = () => {
@@ -172,8 +192,16 @@ const CurrencyToggle: React.FC<CurrencyToggleProps> = ({ onCurrencyChange }) => 
   }, []);
 
   const currencies = [
+    { code: 'EUR', symbol: '€', name: 'Euro' },
     { code: 'USD', symbol: '$', name: 'US Dollar' },
-    { code: 'EUR', symbol: '€', name: 'Euro' }
+    { code: 'GBP', symbol: '£', name: 'British Pound' },
+    { code: 'CHF', symbol: 'Fr', name: 'Swiss Franc' },
+    { code: 'SEK', symbol: 'kr', name: 'Swedish Krona' },
+    { code: 'NOK', symbol: 'kr', name: 'Norwegian Krone' },
+    { code: 'DKK', symbol: 'kr', name: 'Danish Krone' },
+    { code: 'PLN', symbol: 'zł', name: 'Polish Złoty' },
+    { code: 'CZK', symbol: 'Kč', name: 'Czech Koruna' },
+    { code: 'CAD', symbol: 'C$', name: 'Canadian Dollar' }
   ];
 
   const currentCurrencyData = currencies.find(c => c.code === currentCurrency);
@@ -185,7 +213,7 @@ const CurrencyToggle: React.FC<CurrencyToggleProps> = ({ onCurrencyChange }) => 
         onClick={toggleDropdown}
         type="button"
       >
-        <CurrencyIcon>💱</CurrencyIcon>
+        <CurrencyIcon isUpdating={isUpdatingRates} />
         <CurrencyText>{currentCurrency}</CurrencyText>
         <CurrencySymbol>{currentCurrencyData?.symbol}</CurrencySymbol>
       </CurrencyButton>
