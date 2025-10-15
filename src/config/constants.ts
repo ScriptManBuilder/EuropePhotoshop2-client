@@ -7,10 +7,10 @@ export const CONTACT_INFO = {
 
 // Company Information Constants
 export const COMPANY_INFO = {
-  name: process.env.REACT_APP_COMPANY_NAME || 'Goldleaf Goods LLC',
+  name: process.env.REACT_APP_COMPANY_NAME || 'Elariosso Digital',
   websiteUrl: process.env.REACT_APP_WEBSITE_URL || 'photoshop-ecourses.com',
   address: process.env.REACT_APP_COMPANY_ADDRESS || '1350 Tumbleweed Way, Sacramento, CA, USA, 95834',
-  owner: process.env.REACT_APP_COMPANY_OWNER || 'Renita Godbold',
+  owner: process.env.REACT_APP_COMPANY_OWNER || 'Elariosso Digital',
 } as const;
 
 // API Configuration

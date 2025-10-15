@@ -156,7 +156,7 @@ const ReturnPolicy: React.FC = () => {
       <Section>
         <SectionTitle>9. Dispute Resolution</SectionTitle>
         <Paragraph>
-          If you disagree with our refund decision, you may appeal by contacting our director at  {CONTACT_INFO.email} with "REFUND APPEAL" in the subject line. All appeals are reviewed personally and responded to within 5 business days.
+          If you disagree with our refund decision, you may appeal by contacting our customer service team at {CONTACT_INFO.email} with "REFUND APPEAL" in the subject line. All appeals are reviewed personally and responded to within 5 business days.
         </Paragraph>
       </Section>
 
@@ -167,7 +167,7 @@ const ReturnPolicy: React.FC = () => {
         </Paragraph>
         <Paragraph>
       
-          Director: {COMPANY_INFO.owner}<br/>
+          Company: {COMPANY_INFO.owner}<br/>
           Email: {CONTACT_INFO.email}<br/>
           Phone: {CONTACT_INFO.phoneFormatted}<br/>
           Address: {COMPANY_INFO.address}<br/>

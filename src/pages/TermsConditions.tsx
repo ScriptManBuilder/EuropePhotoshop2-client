@@ -60,7 +60,7 @@ const TermsConditions: React.FC = () => {
           Our contact information:
         </Paragraph>
         <Paragraph>
-          Director: {COMPANY_INFO.owner}<br/>
+          Company: {COMPANY_INFO.owner}<br/>
           Email: {CONTACT_INFO.email}<br/>
           Phone: {CONTACT_INFO.phoneFormatted}<br/>
           Address: {COMPANY_INFO.address}
@@ -175,7 +175,7 @@ const TermsConditions: React.FC = () => {
         </Paragraph>
         <Paragraph>
        
-          Director: {COMPANY_INFO.owner}<br />
+          Company: {COMPANY_INFO.owner}<br />
           Address: {COMPANY_INFO.address}<br />
           Phone: {CONTACT_INFO.phoneFormatted}<br />
           Email: {CONTACT_INFO.email}<br />

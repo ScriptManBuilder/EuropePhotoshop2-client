@@ -4,19 +4,19 @@ import styled from 'styled-components';
 interface LanguageOption {
   code: string;
   name: string;
-  flag: string;
+  flagCode: string; // ISO код страны для флага
 }
 
 const languages: LanguageOption[] = [
-  { code: 'en', name: 'English', flag: '🇬🇧' },
-  { code: 'fr', name: 'Français', flag: '🇫🇷' },
-  { code: 'es', name: 'Español', flag: '🇪🇸' },
-  { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
-  { code: 'it', name: 'Italiano', flag: '🇮🇹' },
-  { code: 'pt', name: 'Português', flag: '🇵🇹' },
-  { code: 'nl', name: 'Nederlands', flag: '🇳🇱' },
-  { code: 'pl', name: 'Polski', flag: '🇵🇱' },
-  { code: 'ru', name: 'Русский', flag: '🇷🇺' },
+  { code: 'en', name: 'English', flagCode: 'gb' },
+  { code: 'fr', name: 'Français', flagCode: 'fr' },
+  { code: 'es', name: 'Español', flagCode: 'es' },
+  { code: 'de', name: 'Deutsch', flagCode: 'de' },
+  { code: 'it', name: 'Italiano', flagCode: 'it' },
+  { code: 'pt', name: 'Português', flagCode: 'pt' },
+  { code: 'nl', name: 'Nederlands', flagCode: 'nl' },
+  { code: 'pl', name: 'Polski', flagCode: 'pl' },
+  { code: 'ru', name: 'Русский', flagCode: 'ru' },
 ];
 
 const LanguageToggleContainer = styled.div`
@@ -30,14 +30,14 @@ const LanguageButton = styled.button<{ isOpen: boolean }>`
   color: white;
   border: none;
   border-radius: 12px;
-  padding: 10px 14px;
+  padding: 10px 16px; /* Увеличили правый padding с 14px до 16px */
   cursor: pointer;
   display: flex;
   align-items: center;
   gap: 8px;
   font-size: 14px;
   font-weight: 600;
-  min-width: 120px;
+  min-width: 140px; /* Увеличили с 120px для лучшего отображения */
   justify-content: space-between;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 2px 8px rgba(102, 126, 234, 0.25);
@@ -83,28 +83,39 @@ const LanguageButton = styled.button<{ isOpen: boolean }>`
 
   /* Адаптивность для планшетов */
   @media (max-width: 1024px) {
-    padding: 9px 12px;
-    font-size: 13px;
-    min-width: 110px;
+    padding: 8px 10px;
+    font-size: 12px;
+    min-width: 120px; /* Увеличили с 100px */
+    gap: 6px;
   }
 
   /* Адаптивность для мобильных */
   @media (max-width: 768px) {
-    padding: 4px 6px;
-    font-size: 10px;
-    min-width: 50px;
-    border-radius: 6px;
-    gap: 3px;
-    height: 28px;
+    padding: 6px 8px;
+    font-size: 11px;
+    min-width: 80px;
+    border-radius: 8px;
+    gap: 4px;
+    height: 32px;
   }
 
   /* Для очень маленьких экранов */
   @media (max-width: 480px) {
+    padding: 4px 6px;
+    font-size: 10px;
+    min-width: 70px;
+    border-radius: 6px;
+    height: 28px;
+    gap: 3px;
+  }
+
+  /* Для самых маленьких экранов */
+  @media (max-width: 375px) {
     padding: 3px 5px;
     font-size: 9px;
-    min-width: 45px;
-    border-radius: 5px;
-    height: 26px;
+    min-width: 60px;
+    height: 24px;
+    gap: 2px;
   }
 `;
 
@@ -113,6 +124,7 @@ const LanguageDropdown = styled.div<{ isOpen: boolean }>`
   top: calc(100% - 2px);
   left: 0;
   right: 0;
+  min-width: 160px; /* Минимальная ширина для комфортного чтения */
   background: white;
   border: 1px solid #e1e5e9;
   border-radius: 4px 4px 12px 12px;
@@ -189,11 +201,11 @@ const LanguageDropdown = styled.div<{ isOpen: boolean }>`
 `;
 
 const LanguageOption = styled.div`
-  padding: 14px 18px;
+  padding: 16px 20px; /* Увеличили padding для десктопа */
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px; /* Увеличили gap */
   transition: all 0.2s ease;
   border-bottom: 1px solid #f5f6f7;
   position: relative;
@@ -232,41 +244,49 @@ const LanguageOption = styled.div`
   @media (max-width: 1024px) {
     padding: 12px 16px;
     gap: 10px;
+    font-size: 15px;
   }
 
   /* Мобильные */
   @media (max-width: 768px) {
-    padding: 12px 16px; /* Уменьшили padding */
-    font-size: 14px; /* Уменьшили с 16px до 14px */
-    gap: 10px; /* Уменьшили gap */
-    
-    &:hover {
-      padding-left: 20px; /* Уменьшили hover padding */
-    }
-
-    &:first-child {
-      border-radius: 16px 16px 0 0;
-    }
-
-    &:last-child {
-      border-radius: 0 0 16px 16px;
-    }
-  }
-
-  /* Очень маленькие экраны */
-  @media (max-width: 480px) {
-    padding: 10px 14px; /* Еще меньше padding */
-    font-size: 13px; /* Уменьшили с 15px до 13px */
+    padding: 10px 14px;
+    font-size: 13px;
     gap: 8px;
     
     &:hover {
       padding-left: 18px;
     }
+
+    &:first-child {
+      border-radius: 12px 12px 0 0;
+    }
+
+    &:last-child {
+      border-radius: 0 0 12px 12px;
+    }
+  }
+
+  /* Очень маленькие экраны */
+  @media (max-width: 480px) {
+    padding: 8px 12px;
+    font-size: 12px;
+    gap: 6px;
+    
+    &:hover {
+      padding-left: 16px;
+    }
   }
 
   /* Совсем маленькие экраны */
   @media (max-width: 375px) {
-    padding: 8px 12px;
+    padding: 6px 10px;
+    font-size: 11px;
+    gap: 5px;
+    
+    &:hover {
+      padding-left: 14px;
+    }
+  }
     font-size: 12px;
     gap: 6px;
     
@@ -276,18 +296,55 @@ const LanguageOption = styled.div`
   }
 `;
 
-const FlagEmoji = styled.span`
-  font-size: 18px; /* Немного уменьшили базовый размер */
-  line-height: 1;
-  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
-  flex-shrink: 0; /* Предотвращаем сжатие флага */
+const FlagIcon = styled.span<{ countryCode: string }>`
+  width: 20px;
+  height: 15px;
+  flex-shrink: 0;
+  border-radius: 2px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  position: relative;
+  
+  /* CSS-флаги через градиенты и псевдоэлементы */
+  &::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 2px;
+    background: ${props => {
+      switch (props.countryCode) {
+        case 'gb': return 'linear-gradient(to bottom, #012169 0%, #012169 33%, white 33%, white 66%, #C8102E 66%)';
+        case 'fr': return 'linear-gradient(to right, #002654 0%, #002654 33%, white 33%, white 66%, #CE1126 66%)';
+        case 'es': return 'linear-gradient(to bottom, #C60B1E 0%, #C60B1E 25%, #FFC400 25%, #FFC400 75%, #C60B1E 75%)';
+        case 'de': return 'linear-gradient(to bottom, #000 0%, #000 33%, #DD0000 33%, #DD0000 66%, #FFCE00 66%)';
+        case 'it': return 'linear-gradient(to right, #009246 0%, #009246 33%, white 33%, white 66%, #CE2B37 66%)';
+        case 'pt': return 'linear-gradient(to right, #046A38 0%, #046A38 40%, #DA020E 40%)';
+        case 'nl': return 'linear-gradient(to bottom, #AE1C28 0%, #AE1C28 33%, white 33%, white 66%, #21468B 66%)';
+        case 'pl': return 'linear-gradient(to bottom, white 0%, white 50%, #DC143C 50%)';
+        case 'ru': return 'linear-gradient(to bottom, white 0%, white 33%, #0039A6 33%, #0039A6 66%, #D52B1E 66%)';
+        default: return '#ccc';
+      }
+    }};
+  }
 
   @media (max-width: 1024px) {
-    font-size: 16px; /* Уменьшили */
+    width: 16px;
+    height: 12px;
   }
 
   @media (max-width: 768px) {
-    font-size: 14px; /* Меньше для мобильных */
+    width: 14px;
+    height: 10px;
+  }
+
+  @media (max-width: 480px) {
+    width: 12px;
+    height: 9px;
+  }
+
+  @media (max-width: 375px) {
+    width: 10px;
+    height: 8px;
   }
 
   @media (max-width: 480px) {
@@ -326,12 +383,17 @@ const ArrowIcon = styled.span<{ isOpen: boolean }>`
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   transform: ${props => props.isOpen ? 'rotate(180deg)' : 'rotate(0deg)'};
   opacity: 0.8;
+  flex-shrink: 0;
 
   @media (max-width: 768px) {
-    font-size: 8px;
+    font-size: 10px;
   }
 
   @media (max-width: 480px) {
+    font-size: 8px;
+  }
+
+  @media (max-width: 375px) {
     font-size: 7px;
   }
 `;
@@ -340,13 +402,42 @@ const CurrentLanguageInfo = styled.div`
   display: flex;
   align-items: center;
   gap: 6px;
+  flex: 1;
+  min-width: 0; /* Позволяет сжиматься */
+
+  span {
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  @media (max-width: 1024px) {
+    gap: 5px;
+  }
 
   @media (max-width: 768px) {
-    gap: 2px;
+    gap: 3px;
+    
+    span {
+      font-size: 11px;
+    }
   }
 
   @media (max-width: 480px) {
+    gap: 2px;
+    
+    span {
+      font-size: 10px;
+    }
+  }
+
+  @media (max-width: 375px) {
     gap: 1px;
+    
+    span {
+      font-size: 9px;
+    }
   }
 `;
 
@@ -637,7 +728,7 @@ const LanguageToggle: React.FC = () => {
           title="Change Language / Cambiar idioma / Changer la langue"
         >
           <CurrentLanguageInfo>
-            <FlagEmoji>{currentLanguage.flag}</FlagEmoji>
+            <FlagIcon countryCode={currentLanguage.flagCode} />
             <span>{currentLanguage.code.toUpperCase()}</span>
           </CurrentLanguageInfo>
           <ArrowIcon isOpen={isOpen}>▼</ArrowIcon>
@@ -652,7 +743,7 @@ const LanguageToggle: React.FC = () => {
               key={language.code}
               onClick={() => handleLanguageSelect(language)}
             >
-              <FlagEmoji>{language.flag}</FlagEmoji>
+              <FlagIcon countryCode={language.flagCode} />
               <LanguageName>{language.name}</LanguageName>
             </LanguageOption>
           ))}
